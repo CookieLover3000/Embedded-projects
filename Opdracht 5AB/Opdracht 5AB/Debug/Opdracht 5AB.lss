@@ -95,8 +95,8 @@ void initUsart()
 {
 	UCSR0A = 00;
   90:	10 92 c0 00 	sts	0x00C0, r1	; 0x8000c0 <__TEXT_REGION_LENGTH__+0x7f80c0>
-	UCSR0B = (1 << TXEN0) | (1 << RXEN0) | (1 << RXCIE0); // Enable the USART Transmitter and Receiver
-  94:	88 e9       	ldi	r24, 0x98	; 152
+	UCSR0B = (1 << RXEN0) | (1 << RXCIE0); // Enable the USART Receiver and Receiver Interrupt
+  94:	80 e9       	ldi	r24, 0x90	; 144
   96:	80 93 c1 00 	sts	0x00C1, r24	; 0x8000c1 <__TEXT_REGION_LENGTH__+0x7f80c1>
 	UCSR0C = (1 << UCSZ01) | (1 << UCSZ00);				  // 8 data bits, 1 stop bit
   9a:	86 e0       	ldi	r24, 0x06	; 6

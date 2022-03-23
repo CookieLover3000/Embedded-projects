@@ -6,13 +6,26 @@
  */ 
 
 #include <avr/io.h>
-
+#include <util/delay.h>
 
 int main(void)
 {
-    /* Replace with your application code */
-    while (1) 
-    {
-    }
+	DDRB = 1 << PORTB2; // het genereren van een toon gebeurd op een output
+	TCCR1A =
+	TCCR1B = 1 << WGM12 | 1 << CS10;
+	OCR1A = 27242.389157529113;
+
+	_delay_ms(2000);
+
+	// zet de toon uit
+	_delay_ms(2000);
+	//zet de toon aan
+	_delay_ms(2000);
+	//zet de toon uit
+
+
+	while (1)
+	{
+	}
 }
 

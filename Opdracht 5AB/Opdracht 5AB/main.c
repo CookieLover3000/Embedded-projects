@@ -15,7 +15,7 @@ volatile uint8_t x = 0;
 void initUsart()
 {
 	UCSR0A = 00;
-	UCSR0B = (1 << TXEN0) | (1 << RXEN0) | (1 << RXCIE0); // Enable the USART Transmitter and Receiver
+	UCSR0B = (1 << RXEN0) | (1 << RXCIE0); // Enable the USART Receiver and Receiver Interrupt
 	UCSR0C = (1 << UCSZ01) | (1 << UCSZ00);				  // 8 data bits, 1 stop bit
 	UBRR0H=00;
 	UBRR0L=103;											  //baudrade 9600
