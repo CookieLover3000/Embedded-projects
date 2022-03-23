@@ -1,0 +1,545 @@
+
+vanFritsGejat3.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .data         00000000  00800100  00800100  0000037e  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  1 .text         0000030a  00000000  00000000  00000074  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  2 .bss          00000007  00800100  00800100  0000037e  2**0
+                  ALLOC
+  3 .comment      00000030  00000000  00000000  0000037e  2**0
+                  CONTENTS, READONLY
+  4 .note.gnu.avr.deviceinfo 00000040  00000000  00000000  000003b0  2**2
+                  CONTENTS, READONLY
+  5 .debug_aranges 00000070  00000000  00000000  000003f0  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_info   00000965  00000000  00000000  00000460  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_abbrev 0000073a  00000000  00000000  00000dc5  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_line   000004af  00000000  00000000  000014ff  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_frame  0000011c  00000000  00000000  000019b0  2**2
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_str    00000412  00000000  00000000  00001acc  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_loc    000001ff  00000000  00000000  00001ede  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 12 .debug_ranges 00000060  00000000  00000000  000020dd  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0c 94 34 00 	jmp	0x68	; 0x68 <__ctors_end>
+   4:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+   8:	0c 94 8f 00 	jmp	0x11e	; 0x11e <__vector_2>
+   c:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  10:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  14:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  18:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  1c:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  20:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  24:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  28:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  2c:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  30:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  34:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  38:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  3c:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  40:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  44:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  48:	0c 94 48 00 	jmp	0x90	; 0x90 <__vector_18>
+  4c:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  50:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  54:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  58:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  5c:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  60:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  64:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+
+00000068 <__ctors_end>:
+  68:	11 24       	eor	r1, r1
+  6a:	1f be       	out	0x3f, r1	; 63
+  6c:	cf ef       	ldi	r28, 0xFF	; 255
+  6e:	d8 e0       	ldi	r29, 0x08	; 8
+  70:	de bf       	out	0x3e, r29	; 62
+  72:	cd bf       	out	0x3d, r28	; 61
+
+00000074 <__do_clear_bss>:
+  74:	21 e0       	ldi	r18, 0x01	; 1
+  76:	a0 e0       	ldi	r26, 0x00	; 0
+  78:	b1 e0       	ldi	r27, 0x01	; 1
+  7a:	01 c0       	rjmp	.+2      	; 0x7e <.do_clear_bss_start>
+
+0000007c <.do_clear_bss_loop>:
+  7c:	1d 92       	st	X+, r1
+
+0000007e <.do_clear_bss_start>:
+  7e:	a7 30       	cpi	r26, 0x07	; 7
+  80:	b2 07       	cpc	r27, r18
+  82:	e1 f7       	brne	.-8      	; 0x7c <.do_clear_bss_loop>
+  84:	0e 94 48 01 	call	0x290	; 0x290 <main>
+  88:	0c 94 83 01 	jmp	0x306	; 0x306 <_exit>
+
+0000008c <__bad_interrupt>:
+  8c:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+00000090 <__vector_18>:
+int check2;
+char teller;
+char temp;
+char temp2;
+
+ISR(USART_RX_vect){
+  90:	1f 92       	push	r1
+  92:	0f 92       	push	r0
+  94:	0f b6       	in	r0, 0x3f	; 63
+  96:	0f 92       	push	r0
+  98:	11 24       	eor	r1, r1
+  9a:	8f 93       	push	r24
+	while(~UCSR0A & (1<<RXC0));
+  9c:	80 91 c0 00 	lds	r24, 0x00C0	; 0x8000c0 <__TEXT_REGION_LENGTH__+0x7f80c0>
+  a0:	88 23       	and	r24, r24
+  a2:	e4 f7       	brge	.-8      	; 0x9c <__vector_18+0xc>
+	if(UCSR0A & (1 << FE0 | 1 << DOR0)){ // frame error en data overrun
+  a4:	80 91 c0 00 	lds	r24, 0x00C0	; 0x8000c0 <__TEXT_REGION_LENGTH__+0x7f80c0>
+  a8:	88 71       	andi	r24, 0x18	; 24
+  aa:	29 f0       	breq	.+10     	; 0xb6 <__vector_18+0x26>
+		temp = UDR0;
+  ac:	80 91 c6 00 	lds	r24, 0x00C6	; 0x8000c6 <__TEXT_REGION_LENGTH__+0x7f80c6>
+  b0:	80 93 01 01 	sts	0x0101, r24	; 0x800101 <temp>
+  b4:	04 c0       	rjmp	.+8      	; 0xbe <__vector_18+0x2e>
+	}
+	else {
+		temp = UDR0;
+  b6:	80 91 c6 00 	lds	r24, 0x00C6	; 0x8000c6 <__TEXT_REGION_LENGTH__+0x7f80c6>
+  ba:	80 93 01 01 	sts	0x0101, r24	; 0x800101 <temp>
+	}
+	while(~UCSR0A & (1 << UDRE0));
+  be:	80 91 c0 00 	lds	r24, 0x00C0	; 0x8000c0 <__TEXT_REGION_LENGTH__+0x7f80c0>
+  c2:	85 ff       	sbrs	r24, 5
+  c4:	fc cf       	rjmp	.-8      	; 0xbe <__vector_18+0x2e>
+	UDR0 = temp;
+  c6:	80 91 01 01 	lds	r24, 0x0101	; 0x800101 <temp>
+  ca:	80 93 c6 00 	sts	0x00C6, r24	; 0x8000c6 <__TEXT_REGION_LENGTH__+0x7f80c6>
+}
+  ce:	8f 91       	pop	r24
+  d0:	0f 90       	pop	r0
+  d2:	0f be       	out	0x3f, r0	; 63
+  d4:	0f 90       	pop	r0
+  d6:	1f 90       	pop	r1
+  d8:	18 95       	reti
+
+000000da <initUsart>:
+	}
+	return 0;
+}
+
+void initUsart(){
+	UCSR0A = 0;
+  da:	10 92 c0 00 	sts	0x00C0, r1	; 0x8000c0 <__TEXT_REGION_LENGTH__+0x7f80c0>
+	UCSR0B = (1 << TXEN0)  | (1 << RXEN0); // Enable de USART Transmitter
+  de:	88 e1       	ldi	r24, 0x18	; 24
+  e0:	80 93 c1 00 	sts	0x00C1, r24	; 0x8000c1 <__TEXT_REGION_LENGTH__+0x7f80c1>
+	UCSR0C = (1 << UCSZ01) | (1 << UCSZ00); // 8 data bits, 1 stop bit
+  e4:	86 e0       	ldi	r24, 0x06	; 6
+  e6:	80 93 c2 00 	sts	0x00C2, r24	; 0x8000c2 <__TEXT_REGION_LENGTH__+0x7f80c2>
+	UBRR0H = 00;
+  ea:	10 92 c5 00 	sts	0x00C5, r1	; 0x8000c5 <__TEXT_REGION_LENGTH__+0x7f80c5>
+	UBRR0L = 103; //baudrade 9600 bij
+  ee:	87 e6       	ldi	r24, 0x67	; 103
+  f0:	80 93 c4 00 	sts	0x00C4, r24	; 0x8000c4 <__TEXT_REGION_LENGTH__+0x7f80c4>
+  f4:	08 95       	ret
+
+000000f6 <initPortD>:
+}
+
+void initPortD (){                // knopje initialiseren op port D3
+	DDRD    &= ~(1 << PORTD3);  // iput
+  f6:	8a b1       	in	r24, 0x0a	; 10
+  f8:	87 7f       	andi	r24, 0xF7	; 247
+  fa:	8a b9       	out	0x0a, r24	; 10
+	PORTD    |=  (1 << PORTD3);  // pullup
+  fc:	8b b1       	in	r24, 0x0b	; 11
+  fe:	88 60       	ori	r24, 0x08	; 8
+ 100:	8b b9       	out	0x0b, r24	; 11
+ 102:	08 95       	ret
+
+00000104 <knopD3Ingedrukt>:
+}
+
+int knopD3Ingedrukt(){
+
+	if(~PIND & (1<<PORTD3)){
+ 104:	4b 99       	sbic	0x09, 3	; 9
+ 106:	05 c0       	rjmp	.+10     	; 0x112 <knopD3Ingedrukt+0xe>
+
+		if(~PIND & (1<<PORTD3)){
+ 108:	4b 9b       	sbis	0x09, 3	; 9
+ 10a:	06 c0       	rjmp	.+12     	; 0x118 <knopD3Ingedrukt+0x14>
+			return TRUE;
+
+		}
+	}
+	return FALSE;
+ 10c:	80 e0       	ldi	r24, 0x00	; 0
+ 10e:	90 e0       	ldi	r25, 0x00	; 0
+ 110:	08 95       	ret
+ 112:	80 e0       	ldi	r24, 0x00	; 0
+ 114:	90 e0       	ldi	r25, 0x00	; 0
+ 116:	08 95       	ret
+int knopD3Ingedrukt(){
+
+	if(~PIND & (1<<PORTD3)){
+
+		if(~PIND & (1<<PORTD3)){
+			return TRUE;
+ 118:	81 e0       	ldi	r24, 0x01	; 1
+ 11a:	90 e0       	ldi	r25, 0x00	; 0
+
+		}
+	}
+	return FALSE;
+}
+ 11c:	08 95       	ret
+
+0000011e <__vector_2>:
+	while(~UCSR0A & (1 << UDRE0));
+	UDR0 = temp;
+}
+
+ISR(INT1_vect)
+{
+ 11e:	1f 92       	push	r1
+ 120:	0f 92       	push	r0
+ 122:	0f b6       	in	r0, 0x3f	; 63
+ 124:	0f 92       	push	r0
+ 126:	11 24       	eor	r1, r1
+ 128:	2f 93       	push	r18
+ 12a:	3f 93       	push	r19
+ 12c:	4f 93       	push	r20
+ 12e:	5f 93       	push	r21
+ 130:	6f 93       	push	r22
+ 132:	7f 93       	push	r23
+ 134:	8f 93       	push	r24
+ 136:	9f 93       	push	r25
+ 138:	af 93       	push	r26
+ 13a:	bf 93       	push	r27
+ 13c:	ef 93       	push	r30
+ 13e:	ff 93       	push	r31
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+ 140:	2f ef       	ldi	r18, 0xFF	; 255
+ 142:	80 e7       	ldi	r24, 0x70	; 112
+ 144:	92 e0       	ldi	r25, 0x02	; 2
+ 146:	21 50       	subi	r18, 0x01	; 1
+ 148:	80 40       	sbci	r24, 0x00	; 0
+ 14a:	90 40       	sbci	r25, 0x00	; 0
+ 14c:	e1 f7       	brne	.-8      	; 0x146 <__vector_2+0x28>
+ 14e:	00 c0       	rjmp	.+0      	; 0x150 <__vector_2+0x32>
+ 150:	00 00       	nop
+
+	_delay_ms(50);
+	if(knopD3Ingedrukt()){
+ 152:	0e 94 82 00 	call	0x104	; 0x104 <knopD3Ingedrukt>
+ 156:	89 2b       	or	r24, r25
+ 158:	89 f0       	breq	.+34     	; 0x17c <__vector_2+0x5e>
+		if(check2 == TRUE){
+ 15a:	80 91 05 01 	lds	r24, 0x0105	; 0x800105 <check2>
+ 15e:	90 91 06 01 	lds	r25, 0x0106	; 0x800106 <check2+0x1>
+ 162:	01 97       	sbiw	r24, 0x01	; 1
+ 164:	29 f4       	brne	.+10     	; 0x170 <__vector_2+0x52>
+			check2 = FALSE;
+ 166:	10 92 06 01 	sts	0x0106, r1	; 0x800106 <check2+0x1>
+ 16a:	10 92 05 01 	sts	0x0105, r1	; 0x800105 <check2>
+ 16e:	06 c0       	rjmp	.+12     	; 0x17c <__vector_2+0x5e>
+		}
+		else {
+			check2 = TRUE;
+ 170:	81 e0       	ldi	r24, 0x01	; 1
+ 172:	90 e0       	ldi	r25, 0x00	; 0
+ 174:	90 93 06 01 	sts	0x0106, r25	; 0x800106 <check2+0x1>
+ 178:	80 93 05 01 	sts	0x0105, r24	; 0x800105 <check2>
+		}
+	}
+}
+ 17c:	ff 91       	pop	r31
+ 17e:	ef 91       	pop	r30
+ 180:	bf 91       	pop	r27
+ 182:	af 91       	pop	r26
+ 184:	9f 91       	pop	r25
+ 186:	8f 91       	pop	r24
+ 188:	7f 91       	pop	r23
+ 18a:	6f 91       	pop	r22
+ 18c:	5f 91       	pop	r21
+ 18e:	4f 91       	pop	r20
+ 190:	3f 91       	pop	r19
+ 192:	2f 91       	pop	r18
+ 194:	0f 90       	pop	r0
+ 196:	0f be       	out	0x3f, r0	; 63
+ 198:	0f 90       	pop	r0
+ 19a:	1f 90       	pop	r1
+ 19c:	18 95       	reti
+
+0000019e <tellerLed>:
+	return FALSE;
+}
+
+void tellerLed(){
+	
+	PORTB &= 0xf0;
+ 19e:	85 b1       	in	r24, 0x05	; 5
+ 1a0:	80 7f       	andi	r24, 0xF0	; 240
+ 1a2:	85 b9       	out	0x05, r24	; 5
+	if (teller >= '0' && teller <= '9'){
+ 1a4:	80 91 04 01 	lds	r24, 0x0104	; 0x800104 <teller>
+ 1a8:	80 53       	subi	r24, 0x30	; 48
+ 1aa:	8a 30       	cpi	r24, 0x0A	; 10
+ 1ac:	18 f4       	brcc	.+6      	; 0x1b4 <tellerLed+0x16>
+	PORTB |= teller - '0';}
+ 1ae:	95 b1       	in	r25, 0x05	; 5
+ 1b0:	89 2b       	or	r24, r25
+ 1b2:	85 b9       	out	0x05, r24	; 5
+	if (teller >= 'A' && teller <= 'F'){
+ 1b4:	80 91 04 01 	lds	r24, 0x0104	; 0x800104 <teller>
+ 1b8:	9f eb       	ldi	r25, 0xBF	; 191
+ 1ba:	98 0f       	add	r25, r24
+ 1bc:	96 30       	cpi	r25, 0x06	; 6
+ 1be:	20 f4       	brcc	.+8      	; 0x1c8 <tellerLed+0x2a>
+	PORTB |= teller - 55;}
+ 1c0:	95 b1       	in	r25, 0x05	; 5
+ 1c2:	87 53       	subi	r24, 0x37	; 55
+ 1c4:	89 2b       	or	r24, r25
+ 1c6:	85 b9       	out	0x05, r24	; 5
+	if (teller >= 'a' && teller <= 'f'){
+ 1c8:	80 91 04 01 	lds	r24, 0x0104	; 0x800104 <teller>
+ 1cc:	9f e9       	ldi	r25, 0x9F	; 159
+ 1ce:	98 0f       	add	r25, r24
+ 1d0:	96 30       	cpi	r25, 0x06	; 6
+ 1d2:	20 f4       	brcc	.+8      	; 0x1dc <tellerLed+0x3e>
+	PORTB |= teller - 87;}
+ 1d4:	95 b1       	in	r25, 0x05	; 5
+ 1d6:	87 55       	subi	r24, 0x57	; 87
+ 1d8:	89 2b       	or	r24, r25
+ 1da:	85 b9       	out	0x05, r24	; 5
+ 1dc:	08 95       	ret
+
+000001de <hexTeller>:
+	
+}
+
+void hexTeller(){
+
+	if(teller <= '@' && teller >= ':'){
+ 1de:	80 91 04 01 	lds	r24, 0x0104	; 0x800104 <teller>
+ 1e2:	8a 53       	subi	r24, 0x3A	; 58
+ 1e4:	87 30       	cpi	r24, 0x07	; 7
+ 1e6:	18 f4       	brcc	.+6      	; 0x1ee <hexTeller+0x10>
+		teller = '9';                        // teller krijgt ascii waarde 9 en gaat verder
+ 1e8:	89 e3       	ldi	r24, 0x39	; 57
+ 1ea:	80 93 04 01 	sts	0x0104, r24	; 0x800104 <teller>
+	}
+	if(teller <= '`' && teller >= '['){
+ 1ee:	80 91 04 01 	lds	r24, 0x0104	; 0x800104 <teller>
+ 1f2:	8b 55       	subi	r24, 0x5B	; 91
+ 1f4:	86 30       	cpi	r24, 0x06	; 6
+ 1f6:	18 f4       	brcc	.+6      	; 0x1fe <hexTeller+0x20>
+		teller = '9';                        // teller krijgt ascii waarde 9 en gaat verder
+ 1f8:	89 e3       	ldi	r24, 0x39	; 57
+ 1fa:	80 93 04 01 	sts	0x0104, r24	; 0x800104 <teller>
+ 1fe:	08 95       	ret
+
+00000200 <knipperLed>:
+	PORTB |= teller - 87;}
+	
+}
+
+void knipperLed(){
+	if(teller == '0'){
+ 200:	80 91 04 01 	lds	r24, 0x0104	; 0x800104 <teller>
+ 204:	80 33       	cpi	r24, 0x30	; 48
+ 206:	29 f4       	brne	.+10     	; 0x212 <knipperLed+0x12>
+		check = FALSE;
+ 208:	10 92 03 01 	sts	0x0103, r1	; 0x800103 <check+0x1>
+ 20c:	10 92 02 01 	sts	0x0102, r1	; 0x800102 <check>
+ 210:	08 95       	ret
+	}
+	else{
+		PORTB |=  (1 << PORTB4);
+ 212:	85 b1       	in	r24, 0x05	; 5
+ 214:	80 61       	ori	r24, 0x10	; 16
+ 216:	85 b9       	out	0x05, r24	; 5
+ 218:	2f ef       	ldi	r18, 0xFF	; 255
+ 21a:	89 e6       	ldi	r24, 0x69	; 105
+ 21c:	98 e1       	ldi	r25, 0x18	; 24
+ 21e:	21 50       	subi	r18, 0x01	; 1
+ 220:	80 40       	sbci	r24, 0x00	; 0
+ 222:	90 40       	sbci	r25, 0x00	; 0
+ 224:	e1 f7       	brne	.-8      	; 0x21e <knipperLed+0x1e>
+ 226:	00 c0       	rjmp	.+0      	; 0x228 <knipperLed+0x28>
+ 228:	00 00       	nop
+		_delay_ms(500);
+		PORTB &= ~(1 << PORTB4);
+ 22a:	85 b1       	in	r24, 0x05	; 5
+ 22c:	8f 7e       	andi	r24, 0xEF	; 239
+ 22e:	85 b9       	out	0x05, r24	; 5
+		teller--;
+ 230:	80 91 04 01 	lds	r24, 0x0104	; 0x800104 <teller>
+ 234:	81 50       	subi	r24, 0x01	; 1
+ 236:	80 93 04 01 	sts	0x0104, r24	; 0x800104 <teller>
+		hexTeller();
+ 23a:	0e 94 ef 00 	call	0x1de	; 0x1de <hexTeller>
+ 23e:	2f ef       	ldi	r18, 0xFF	; 255
+ 240:	89 e6       	ldi	r24, 0x69	; 105
+ 242:	98 e1       	ldi	r25, 0x18	; 24
+ 244:	21 50       	subi	r18, 0x01	; 1
+ 246:	80 40       	sbci	r24, 0x00	; 0
+ 248:	90 40       	sbci	r25, 0x00	; 0
+ 24a:	e1 f7       	brne	.-8      	; 0x244 <knipperLed+0x44>
+ 24c:	00 c0       	rjmp	.+0      	; 0x24e <knipperLed+0x4e>
+ 24e:	00 00       	nop
+ 250:	08 95       	ret
+
+00000252 <initExtInt>:
+	
+}
+
+void initExtInt (){
+	
+	EIMSK |= (1 << INT1);
+ 252:	8d b3       	in	r24, 0x1d	; 29
+ 254:	82 60       	ori	r24, 0x02	; 2
+ 256:	8d bb       	out	0x1d, r24	; 29
+	EICRA |= (1 << ISC10); //rising edge
+ 258:	e9 e6       	ldi	r30, 0x69	; 105
+ 25a:	f0 e0       	ldi	r31, 0x00	; 0
+ 25c:	80 81       	ld	r24, Z
+ 25e:	84 60       	ori	r24, 0x04	; 4
+ 260:	80 83       	st	Z, r24
+	sei();
+ 262:	78 94       	sei
+ 264:	08 95       	ret
+
+00000266 <readString>:
+	
+}
+
+char readString(){
+	char x;
+	while(~UCSR0A & (1<<RXC0));     //  - USART Receive Complete    // wacht tot ie iets ontvangt
+ 266:	80 91 c0 00 	lds	r24, 0x00C0	; 0x8000c0 <__TEXT_REGION_LENGTH__+0x7f80c0>
+ 26a:	88 23       	and	r24, r24
+ 26c:	e4 f7       	brge	.-8      	; 0x266 <readString>
+	if(UCSR0A &(1<<FE0|1<<DOR0))  { // - Frame Error - Data OverRun
+ 26e:	80 91 c0 00 	lds	r24, 0x00C0	; 0x8000c0 <__TEXT_REGION_LENGTH__+0x7f80c0>
+ 272:	88 71       	andi	r24, 0x18	; 24
+ 274:	21 f0       	breq	.+8      	; 0x27e <readString+0x18>
+		x=UDR0;            // USART I/O Data Register
+ 276:	80 91 c6 00 	lds	r24, 0x00C6	; 0x8000c6 <__TEXT_REGION_LENGTH__+0x7f80c6>
+		x='?';
+ 27a:	8f e3       	ldi	r24, 0x3F	; 63
+ 27c:	02 c0       	rjmp	.+4      	; 0x282 <readString+0x1c>
+	}
+	else {
+		x=UDR0;
+ 27e:	80 91 c6 00 	lds	r24, 0x00C6	; 0x8000c6 <__TEXT_REGION_LENGTH__+0x7f80c6>
+	}
+	while(~UCSR0A & (1<<UDRE0));
+ 282:	90 91 c0 00 	lds	r25, 0x00C0	; 0x8000c0 <__TEXT_REGION_LENGTH__+0x7f80c0>
+ 286:	95 ff       	sbrs	r25, 5
+ 288:	fc cf       	rjmp	.-8      	; 0x282 <readString+0x1c>
+	UDR0=x;
+ 28a:	80 93 c6 00 	sts	0x00C6, r24	; 0x8000c6 <__TEXT_REGION_LENGTH__+0x7f80c6>
+	return x;
+ 28e:	08 95       	ret
+
+00000290 <main>:
+	}
+}
+
+int main(void)
+{
+	DDRB = 0b00011111;
+ 290:	8f e1       	ldi	r24, 0x1F	; 31
+ 292:	84 b9       	out	0x04, r24	; 4
+	PORTB = 0x00;
+ 294:	15 b8       	out	0x05, r1	; 5
+	
+	initPortD();
+ 296:	0e 94 7b 00 	call	0xf6	; 0xf6 <initPortD>
+	initExtInt();
+ 29a:	0e 94 29 01 	call	0x252	; 0x252 <initExtInt>
+	initUsart();
+ 29e:	0e 94 6d 00 	call	0xda	; 0xda <initUsart>
+	
+	while (1)
+	{
+		if (~UCSR0A & (1<<RXC0))        // UCSRnA = filterd incoming frames van USART // RXCn = kijkt of er geen ongeleze data is in de buffer
+ 2a2:	80 91 c0 00 	lds	r24, 0x00C0	; 0x8000c0 <__TEXT_REGION_LENGTH__+0x7f80c0>
+ 2a6:	88 23       	and	r24, r24
+ 2a8:	e4 f3       	brlt	.-8      	; 0x2a2 <main+0x12>
+		{
+			teller = readString();
+ 2aa:	0e 94 33 01 	call	0x266	; 0x266 <readString>
+ 2ae:	80 93 04 01 	sts	0x0104, r24	; 0x800104 <teller>
+			tellerLed(teller);        // regelt het omzetten naar de leds
+ 2b2:	90 e0       	ldi	r25, 0x00	; 0
+ 2b4:	0e 94 cf 00 	call	0x19e	; 0x19e <tellerLed>
+			check  = TRUE;
+ 2b8:	81 e0       	ldi	r24, 0x01	; 1
+ 2ba:	90 e0       	ldi	r25, 0x00	; 0
+ 2bc:	90 93 03 01 	sts	0x0103, r25	; 0x800103 <check+0x1>
+ 2c0:	80 93 02 01 	sts	0x0102, r24	; 0x800102 <check>
+			check2 = TRUE;
+ 2c4:	90 93 06 01 	sts	0x0106, r25	; 0x800106 <check2+0x1>
+ 2c8:	80 93 05 01 	sts	0x0105, r24	; 0x800105 <check2>
+			while (check == TRUE)
+ 2cc:	15 c0       	rjmp	.+42     	; 0x2f8 <main+0x68>
+ 2ce:	2f ef       	ldi	r18, 0xFF	; 255
+ 2d0:	80 e7       	ldi	r24, 0x70	; 112
+ 2d2:	92 e0       	ldi	r25, 0x02	; 2
+ 2d4:	21 50       	subi	r18, 0x01	; 1
+ 2d6:	80 40       	sbci	r24, 0x00	; 0
+ 2d8:	90 40       	sbci	r25, 0x00	; 0
+ 2da:	e1 f7       	brne	.-8      	; 0x2d4 <main+0x44>
+ 2dc:	00 c0       	rjmp	.+0      	; 0x2de <main+0x4e>
+ 2de:	00 00       	nop
+			{
+				while (check2 == FALSE)
+ 2e0:	80 91 05 01 	lds	r24, 0x0105	; 0x800105 <check2>
+ 2e4:	90 91 06 01 	lds	r25, 0x0106	; 0x800106 <check2+0x1>
+ 2e8:	89 2b       	or	r24, r25
+ 2ea:	89 f3       	breq	.-30     	; 0x2ce <main+0x3e>
+				{
+					_delay_ms(50);
+				}
+				tellerLed();        // regelt het omzetten naar de leds
+ 2ec:	0e 94 cf 00 	call	0x19e	; 0x19e <tellerLed>
+				knipperLed();
+ 2f0:	0e 94 00 01 	call	0x200	; 0x200 <knipperLed>
+				hexTeller();
+ 2f4:	0e 94 ef 00 	call	0x1de	; 0x1de <hexTeller>
+		{
+			teller = readString();
+			tellerLed(teller);        // regelt het omzetten naar de leds
+			check  = TRUE;
+			check2 = TRUE;
+			while (check == TRUE)
+ 2f8:	80 91 02 01 	lds	r24, 0x0102	; 0x800102 <check>
+ 2fc:	90 91 03 01 	lds	r25, 0x0103	; 0x800103 <check+0x1>
+ 300:	01 97       	sbiw	r24, 0x01	; 1
+ 302:	71 f3       	breq	.-36     	; 0x2e0 <main+0x50>
+ 304:	ce cf       	rjmp	.-100    	; 0x2a2 <main+0x12>
+
+00000306 <_exit>:
+ 306:	f8 94       	cli
+
+00000308 <__stop_program>:
+ 308:	ff cf       	rjmp	.-2      	; 0x308 <__stop_program>

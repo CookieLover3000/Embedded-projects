@@ -1,0 +1,194 @@
+
+opdracht1.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .data         00000000  00800100  00800100  00000146  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  1 .text         000000f2  00000000  00000000  00000054  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  2 .comment      00000030  00000000  00000000  00000146  2**0
+                  CONTENTS, READONLY
+  3 .note.gnu.avr.deviceinfo 00000040  00000000  00000000  00000178  2**2
+                  CONTENTS, READONLY
+  4 .debug_aranges 00000040  00000000  00000000  000001b8  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  5 .debug_info   000007cd  00000000  00000000  000001f8  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_abbrev 000006f5  00000000  00000000  000009c5  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_line   000002e7  00000000  00000000  000010ba  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_frame  00000064  00000000  00000000  000013a4  2**2
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_str    000003b7  00000000  00000000  00001408  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_loc    000000d6  00000000  00000000  000017bf  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_ranges 00000030  00000000  00000000  00001895  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0c 94 34 00 	jmp	0x68	; 0x68 <__ctors_end>
+   4:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+   8:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+   c:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  10:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  14:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  18:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  1c:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  20:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  24:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  28:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  2c:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  30:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  34:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  38:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  3c:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  40:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  44:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  48:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  4c:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  50:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  54:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  58:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  5c:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  60:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  64:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+
+00000068 <__ctors_end>:
+  68:	11 24       	eor	r1, r1
+  6a:	1f be       	out	0x3f, r1	; 63
+  6c:	cf ef       	ldi	r28, 0xFF	; 255
+  6e:	d8 e0       	ldi	r29, 0x08	; 8
+  70:	de bf       	out	0x3e, r29	; 62
+  72:	cd bf       	out	0x3d, r28	; 61
+  74:	0e 94 62 00 	call	0xc4	; 0xc4 <main>
+  78:	0c 94 77 00 	jmp	0xee	; 0xee <_exit>
+
+0000007c <__bad_interrupt>:
+  7c:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+00000080 <initialisatie>:
+#define F_CPU 16000000UL
+#define TRUE 1
+#define FALSE 0
+
+void initialisatie(){
+	DDRD |= 1 << PORTD0;
+  80:	8a b1       	in	r24, 0x0a	; 10
+  82:	81 60       	ori	r24, 0x01	; 1
+  84:	8a b9       	out	0x0a, r24	; 10
+	PORTD |= 1 << PORTD0;
+  86:	8b b1       	in	r24, 0x0b	; 11
+  88:	81 60       	ori	r24, 0x01	; 1
+  8a:	8b b9       	out	0x0b, r24	; 11
+  8c:	08 95       	ret
+
+0000008e <knopZojuistIngedrukt>:
+}
+
+int knopZojuistIngedrukt(){
+	if(~PINB & (1 << PORTB7)){
+  8e:	1f 99       	sbic	0x03, 7	; 3
+  90:	0b c0       	rjmp	.+22     	; 0xa8 <knopZojuistIngedrukt+0x1a>
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+  92:	87 ea       	ldi	r24, 0xA7	; 167
+  94:	91 e6       	ldi	r25, 0x61	; 97
+  96:	01 97       	sbiw	r24, 0x01	; 1
+  98:	f1 f7       	brne	.-4      	; 0x96 <knopZojuistIngedrukt+0x8>
+  9a:	00 c0       	rjmp	.+0      	; 0x9c <knopZojuistIngedrukt+0xe>
+  9c:	00 00       	nop
+		_delay_ms(100);
+		if(~PINB & (1 << PORTB2)){
+  9e:	1a 99       	sbic	0x03, 2	; 3
+  a0:	06 c0       	rjmp	.+12     	; 0xae <knopZojuistIngedrukt+0x20>
+			return TRUE;
+  a2:	81 e0       	ldi	r24, 0x01	; 1
+  a4:	90 e0       	ldi	r25, 0x00	; 0
+  a6:	08 95       	ret
+
+		}
+	}
+	return FALSE;
+  a8:	80 e0       	ldi	r24, 0x00	; 0
+  aa:	90 e0       	ldi	r25, 0x00	; 0
+  ac:	08 95       	ret
+  ae:	80 e0       	ldi	r24, 0x00	; 0
+  b0:	90 e0       	ldi	r25, 0x00	; 0
+}
+  b2:	08 95       	ret
+
+000000b4 <zetLedAan>:
+
+void zetLedAan(int L){
+	PORTD |=(1 << PORTD0);
+  b4:	8b b1       	in	r24, 0x0b	; 11
+  b6:	81 60       	ori	r24, 0x01	; 1
+  b8:	8b b9       	out	0x0b, r24	; 11
+  ba:	08 95       	ret
+
+000000bc <zetLedUit>:
+}
+
+void zetLedUit(int L){
+	PORTD &= ~(1 << PORTD0);
+  bc:	8b b1       	in	r24, 0x0b	; 11
+  be:	8e 7f       	andi	r24, 0xFE	; 254
+  c0:	8b b9       	out	0x0b, r24	; 11
+  c2:	08 95       	ret
+
+000000c4 <main>:
+}
+
+int main(void)
+{
+	uint8_t aanUit = FALSE;
+	initialisatie();
+  c4:	0e 94 40 00 	call	0x80	; 0x80 <initialisatie>
+	PORTD &= ~(1 << PORTD0);
+}
+
+int main(void)
+{
+	uint8_t aanUit = FALSE;
+  c8:	c0 e0       	ldi	r28, 0x00	; 0
+	initialisatie();
+
+	while (1) {
+		if(knopZojuistIngedrukt()) {
+  ca:	0e 94 47 00 	call	0x8e	; 0x8e <knopZojuistIngedrukt>
+  ce:	89 2b       	or	r24, r25
+  d0:	e1 f3       	breq	.-8      	; 0xca <main+0x6>
+			if(aanUit) {
+  d2:	cc 23       	and	r28, r28
+  d4:	31 f0       	breq	.+12     	; 0xe2 <main+0x1e>
+				zetLedUit(5);
+  d6:	85 e0       	ldi	r24, 0x05	; 5
+  d8:	90 e0       	ldi	r25, 0x00	; 0
+  da:	0e 94 5e 00 	call	0xbc	; 0xbc <zetLedUit>
+				aanUit = FALSE;
+  de:	c0 e0       	ldi	r28, 0x00	; 0
+  e0:	f4 cf       	rjmp	.-24     	; 0xca <main+0x6>
+			}
+			else {
+				zetLedAan(5);
+  e2:	85 e0       	ldi	r24, 0x05	; 5
+  e4:	90 e0       	ldi	r25, 0x00	; 0
+  e6:	0e 94 5a 00 	call	0xb4	; 0xb4 <zetLedAan>
+				aanUit = TRUE;
+  ea:	c1 e0       	ldi	r28, 0x01	; 1
+  ec:	ee cf       	rjmp	.-36     	; 0xca <main+0x6>
+
+000000ee <_exit>:
+  ee:	f8 94       	cli
+
+000000f0 <__stop_program>:
+  f0:	ff cf       	rjmp	.-2      	; 0xf0 <__stop_program>
