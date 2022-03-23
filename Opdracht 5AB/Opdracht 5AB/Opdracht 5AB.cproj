@@ -12,9 +12,9 @@
     <OutputFileName>$(MSBuildProjectName)</OutputFileName>
     <OutputFileExtension>.elf</OutputFileExtension>
     <OutputDirectory>$(MSBuildProjectDirectory)\$(Configuration)</OutputDirectory>
-    <AssemblyName>Opdracht5a</AssemblyName>
-    <Name>Opdracht5a</Name>
-    <RootNamespace>Opdracht5a</RootNamespace>
+    <AssemblyName>Opdracht 5AB</AssemblyName>
+    <Name>Opdracht 5AB</Name>
+    <RootNamespace>Opdracht 5AB</RootNamespace>
     <ToolchainFlavour>Native</ToolchainFlavour>
     <KeepTimersRunning>true</KeepTimersRunning>
     <OverrideVtor>false</OverrideVtor>
@@ -28,18 +28,6 @@
     <ResetRule>0</ResetRule>
     <eraseonlaunchrule>1</eraseonlaunchrule>
     <EraseKey />
-    <AsfFrameworkConfig>
-      <framework-data xmlns="">
-        <options />
-        <configurations />
-        <files />
-        <documentation help="" />
-        <offline-documentation help="" />
-        <dependencies>
-          <content-extension eid="atmel.asf" uuidref="Atmel.ASF" version="3.51.0" />
-        </dependencies>
-      </framework-data>
-    </AsfFrameworkConfig>
     <avrtool>com.atmel.avrdbg.tool.medbg</avrtool>
     <avrtoolserialnumber>ATML2323052700000235</avrtoolserialnumber>
     <avrdeviceexpectedsignature>0x1E950F</avrdeviceexpectedsignature>
