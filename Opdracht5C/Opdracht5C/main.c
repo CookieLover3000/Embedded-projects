@@ -5,24 +5,24 @@
  * Author : iwanv
  */ 
 
+#define F_CPU 16000000
 #include <avr/io.h>
 #include <util/delay.h>
 
 int main(void)
 {
-	DDRB = 1 << PORTB2; // het genereren van een toon gebeurd op een output
-	TCCR1A =
-	TCCR1B = 1 << WGM12 | 1 << CS10;
-	OCR1A = 27242.389157529113;
+	DDRB = (1 << PORTB2); // het genereren van een toon gebeurd op een output
+	TCCR1A = (1 << COM1B0);
+	TCCR1B = (1 << WGM12) | (1 << CS10); // CTC Mode + 1 prescaler
+	OCR1A = /* F_CPU/((293.66*2) * 1); */ 27242; // ??????????????? waarom is dit OCR1A en niet B. idk anymore, dit is verloren hoop
 
 	_delay_ms(2000);
-
-	// zet de toon uit
+	
+	//zet de toon uit
 	_delay_ms(2000);
 	//zet de toon aan
 	_delay_ms(2000);
 	//zet de toon uit
-
 
 	while (1)
 	{

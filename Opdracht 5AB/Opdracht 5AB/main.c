@@ -25,8 +25,8 @@ void initBlinkTimer()
 {
 	DDRB |= 1 << PORTB1;
 	OCR1A = 15625;	// total timer ticks for 1hz
-	TIMSK1 |= 1 << OCIE1A; // Enable Timer1 Output Compare A Match Interrupt
-	TCCR1B |= 1 << WGM12; // set CTC Bit
+	TIMSK1 = 1 << OCIE1A; // Enable Timer1 Output Compare A Match Interrupt
+	TCCR1B = 1 << WGM12; // set CTC Bit
 	TCCR1B |= 1 << CS10 | 1 << CS12; // 1024 prescaler
 	sei();
 }
