@@ -3,29 +3,29 @@ Opdracht5C.elf:     file format elf32-avr
 
 Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
-  0 .data         00000000  00800100  00800100  0000012c  2**0
+  0 .data         00000000  00800100  00800100  00000134  2**0
                   CONTENTS, ALLOC, LOAD, DATA
-  1 .text         000000d8  00000000  00000000  00000054  2**1
+  1 .text         000000e0  00000000  00000000  00000054  2**1
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  2 .comment      00000030  00000000  00000000  0000012c  2**0
+  2 .comment      00000030  00000000  00000000  00000134  2**0
                   CONTENTS, READONLY
-  3 .note.gnu.avr.deviceinfo 00000040  00000000  00000000  0000015c  2**2
+  3 .note.gnu.avr.deviceinfo 00000040  00000000  00000000  00000164  2**2
                   CONTENTS, READONLY
-  4 .debug_aranges 00000020  00000000  00000000  0000019c  2**0
+  4 .debug_aranges 00000020  00000000  00000000  000001a4  2**0
                   CONTENTS, READONLY, DEBUGGING
-  5 .debug_info   0000077c  00000000  00000000  000001bc  2**0
+  5 .debug_info   0000077a  00000000  00000000  000001c4  2**0
                   CONTENTS, READONLY, DEBUGGING
-  6 .debug_abbrev 0000068a  00000000  00000000  00000938  2**0
+  6 .debug_abbrev 0000066f  00000000  00000000  0000093e  2**0
                   CONTENTS, READONLY, DEBUGGING
-  7 .debug_line   00000256  00000000  00000000  00000fc2  2**0
+  7 .debug_line   00000283  00000000  00000000  00000fad  2**0
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_frame  00000024  00000000  00000000  00001218  2**2
+  8 .debug_frame  00000024  00000000  00000000  00001230  2**2
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_str    0000038e  00000000  00000000  0000123c  2**0
+  9 .debug_str    0000038e  00000000  00000000  00001254  2**0
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_loc    00000090  00000000  00000000  000015ca  2**0
+ 10 .debug_loc    000000d8  00000000  00000000  000015e2  2**0
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_ranges 00000010  00000000  00000000  0000165a  2**0
+ 11 .debug_ranges 00000010  00000000  00000000  000016ba  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -66,7 +66,7 @@ Disassembly of section .text:
   70:	de bf       	out	0x3e, r29	; 62
   72:	cd bf       	out	0x3d, r28	; 61
   74:	0e 94 40 00 	call	0x80	; 0x80 <main>
-  78:	0c 94 6a 00 	jmp	0xd4	; 0xd4 <_exit>
+  78:	0c 94 6e 00 	jmp	0xdc	; 0xdc <_exit>
 
 0000007c <__bad_interrupt>:
   7c:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
@@ -86,11 +86,11 @@ int main(void)
 	TCCR1B = (1 << WGM12) | (1 << CS10); // CTC Mode + 1 prescaler
   8a:	89 e0       	ldi	r24, 0x09	; 9
   8c:	80 93 81 00 	sts	0x0081, r24	; 0x800081 <__TEXT_REGION_LENGTH__+0x7f8081>
-	OCR1B = /* F_CPU/((293.66*2) * 1); */ 27242;
+	OCR1A = /* F_CPU/((293.66*2) * 1); */ 27242; // ??????????????? waarom is dit OCR1A en niet B. idk anymore, dit is verloren hoop
   90:	8a e6       	ldi	r24, 0x6A	; 106
   92:	9a e6       	ldi	r25, 0x6A	; 106
-  94:	90 93 8b 00 	sts	0x008B, r25	; 0x80008b <__TEXT_REGION_LENGTH__+0x7f808b>
-  98:	80 93 8a 00 	sts	0x008A, r24	; 0x80008a <__TEXT_REGION_LENGTH__+0x7f808a>
+  94:	90 93 89 00 	sts	0x0089, r25	; 0x800089 <__TEXT_REGION_LENGTH__+0x7f8089>
+  98:	80 93 88 00 	sts	0x0088, r24	; 0x800088 <__TEXT_REGION_LENGTH__+0x7f8088>
 	#else
 		//round up by default
 		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
@@ -106,28 +106,43 @@ int main(void)
   a8:	e1 f7       	brne	.-8      	; 0xa2 <main+0x22>
   aa:	00 c0       	rjmp	.+0      	; 0xac <main+0x2c>
   ac:	00 00       	nop
-  ae:	2f ef       	ldi	r18, 0xFF	; 255
-  b0:	87 ea       	ldi	r24, 0xA7	; 167
-  b2:	91 e6       	ldi	r25, 0x61	; 97
-  b4:	21 50       	subi	r18, 0x01	; 1
-  b6:	80 40       	sbci	r24, 0x00	; 0
-  b8:	90 40       	sbci	r25, 0x00	; 0
-  ba:	e1 f7       	brne	.-8      	; 0xb4 <main+0x34>
-  bc:	00 c0       	rjmp	.+0      	; 0xbe <main+0x3e>
-  be:	00 00       	nop
-  c0:	2f ef       	ldi	r18, 0xFF	; 255
-  c2:	87 ea       	ldi	r24, 0xA7	; 167
-  c4:	91 e6       	ldi	r25, 0x61	; 97
-  c6:	21 50       	subi	r18, 0x01	; 1
-  c8:	80 40       	sbci	r24, 0x00	; 0
-  ca:	90 40       	sbci	r25, 0x00	; 0
-  cc:	e1 f7       	brne	.-8      	; 0xc6 <main+0x46>
-  ce:	00 c0       	rjmp	.+0      	; 0xd0 <main+0x50>
-  d0:	00 00       	nop
-  d2:	ff cf       	rjmp	.-2      	; 0xd2 <main+0x52>
 
-000000d4 <_exit>:
-  d4:	f8 94       	cli
+	_delay_ms(2000);
+	
+	//zet de toon uit
+	PORTB = 0x00;
+  ae:	15 b8       	out	0x05, r1	; 5
+  b0:	2f ef       	ldi	r18, 0xFF	; 255
+  b2:	87 ea       	ldi	r24, 0xA7	; 167
+  b4:	91 e6       	ldi	r25, 0x61	; 97
+  b6:	21 50       	subi	r18, 0x01	; 1
+  b8:	80 40       	sbci	r24, 0x00	; 0
+  ba:	90 40       	sbci	r25, 0x00	; 0
+  bc:	e1 f7       	brne	.-8      	; 0xb6 <main+0x36>
+  be:	00 c0       	rjmp	.+0      	; 0xc0 <main+0x40>
+  c0:	00 00       	nop
+	_delay_ms(2000);
+	//zet de toon aan
+	PORTB = 0xff;
+  c2:	8f ef       	ldi	r24, 0xFF	; 255
+  c4:	85 b9       	out	0x05, r24	; 5
+  c6:	2f ef       	ldi	r18, 0xFF	; 255
+  c8:	87 ea       	ldi	r24, 0xA7	; 167
+  ca:	91 e6       	ldi	r25, 0x61	; 97
+  cc:	21 50       	subi	r18, 0x01	; 1
+  ce:	80 40       	sbci	r24, 0x00	; 0
+  d0:	90 40       	sbci	r25, 0x00	; 0
+  d2:	e1 f7       	brne	.-8      	; 0xcc <main+0x4c>
+  d4:	00 c0       	rjmp	.+0      	; 0xd6 <main+0x56>
+  d6:	00 00       	nop
+	_delay_ms(2000);
+	//zet de toon uit
+	PORTB = 0x00;
+  d8:	15 b8       	out	0x05, r1	; 5
+  da:	ff cf       	rjmp	.-2      	; 0xda <main+0x5a>
 
-000000d6 <__stop_program>:
-  d6:	ff cf       	rjmp	.-2      	; 0xd6 <__stop_program>
+000000dc <_exit>:
+  dc:	f8 94       	cli
+
+000000de <__stop_program>:
+  de:	ff cf       	rjmp	.-2      	; 0xde <__stop_program>
