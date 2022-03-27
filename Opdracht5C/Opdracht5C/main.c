@@ -24,19 +24,12 @@ void rust(uint16_t);
 
 int main(void)
 {
-
-
-	_delay_ms(2000);
-	
-	//zet de toon uit
-	PORTB = 0x00;
-	_delay_ms(2000);
-	//zet de toon aan
-	PORTB = 0xff;
-	_delay_ms(2000);
-	//zet de toon uit
-	PORTB = 0x00;
-
+ 	initialisatie();
+ 	for(int i=0; i < 3;i++) 
+	 {
+	 	introBeethoven();
+	 	rust(2000);
+	 }
 	while (1)
 	{
 	}
