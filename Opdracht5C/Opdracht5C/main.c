@@ -9,12 +9,22 @@
 #include <avr/io.h>
 #include <util/delay.h>
 
+
+#define NOTE_D 54484.77
+#define NOTE_Ds 51425.45
+#define NOTE_F 45815.08
+#define NOTE_G 40816.327
+#define TestTIJDSDUUR1 1800
+#define TestTIJDSDUUR2 1200
+
+void initialisatie();
+void introBeethoven();
+void playNoot(float, uint16_t);
+void rust(uint16_t);
+
 int main(void)
 {
-	DDRB = (1 << PORTB2); // het genereren van een toon gebeurd op een output
-	TCCR1A = (1 << COM1B0);
-	TCCR1B = (1 << WGM12) | (1 << CS10); // CTC Mode + 1 prescaler
-	OCR1A = /* F_CPU/((293.66*2) * 1); */ 27242; // ??????????????? waarom is dit OCR1A en niet B. idk anymore, dit is verloren hoop
+
 
 	_delay_ms(2000);
 	
@@ -32,3 +42,36 @@ int main(void)
 	}
 }
 
+void initialisatie(){
+		DDRB |= (1 << PORTB2); // het genereren van een toon gebeurd op een output
+		TCCR1A |= (1 << COM1B0);
+		TCCR1B |= (1 << WGM12) | (1 << CS10); // CTC Mode + 1 prescaler
+}
+
+void introBeethoven(){
+	playNoot(NOTE_G, TestTIJDSDUUR1);
+	rust(TestTIJDSDUUR2);
+	playNoot(NOTE_G, TestTIJDSDUUR1);
+	rust(TestTIJDSDUUR2);
+	playNoot(NOTE_G, TestTIJDSDUUR1);
+	rust(TestTIJDSDUUR2);
+	playNoot(NOTE_Ds, 4*TestTIJDSDUUR1);
+	rust(2*TestTIJDSDUUR2);
+	playNoot(NOTE_F, TestTIJDSDUUR1);
+	rust(TestTIJDSDUUR2);
+	playNoot(NOTE_F, TestTIJDSDUUR1);
+	rust(TestTIJDSDUUR2);
+	playNoot(NOTE_F, TestTIJDSDUUR1);
+	rust(TestTIJDSDUUR2);
+	playNoot(NOTE_D, 4*TestTIJDSDUUR1);
+}
+void playNoot(float frequentie, uint16_t tijd){
+	OCR1A = frequentie;
+	for(uint16_t i = 0; i < tijd; i++)
+		_delay_ms(1);
+}
+
+void rust(uint16_t v){
+	for(uint16_t i=0; i< ;v; ++i)
+		_delay_ms(1)
+}
