@@ -15,6 +15,7 @@
 #define NOTE_G 392
 #define TestTIJDSDUUR1 1800
 #define TestTIJDSDUUR2 1200
+#define PRESCALER 1
 
 void initialisatie();
 void introBeethoven();
@@ -58,7 +59,7 @@ void introBeethoven(){
 	playNoot(NOTE_D, 4*TestTIJDSDUUR1);
 }
 void playNoot(float frequentie, uint16_t tijd){
-	OCR1A = F_CPU / ((frequentie*2)-1);
+	OCR1A = F_CPU / (((frequentie*2) * PRESCALER)-1);
 	rust(tijd);
 	OCR1A = 0;
 }
