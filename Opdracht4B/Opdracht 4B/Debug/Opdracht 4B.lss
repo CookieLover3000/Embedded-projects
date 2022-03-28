@@ -21,11 +21,11 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, READONLY, DEBUGGING
   8 .debug_frame  000000a4  00000000  00000000  00001894  2**2
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_str    000003f9  00000000  00000000  00001938  2**0
+  9 .debug_str    000003f8  00000000  00000000  00001938  2**0
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_loc    0000014c  00000000  00000000  00001d31  2**0
+ 10 .debug_loc    0000014c  00000000  00000000  00001d30  2**0
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_ranges 00000040  00000000  00000000  00001e7d  2**0
+ 11 .debug_ranges 00000040  00000000  00000000  00001e7c  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -85,8 +85,8 @@ Disassembly of section .text:
   92:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
 
 00000096 <leesADwaarde>:
-#define WAARDE1 200
-
+#include <avr/io.h>
+#include <util/delay.h>
 
 int leesADwaarde(int analoogInput){
 	int a;
@@ -118,9 +118,9 @@ int leesADwaarde(int analoogInput){
 }
   c0:	08 95       	ret
 
-000000c2 <initadc>:
+000000c2 <initAD>:
 
-void initadc()
+void initAD()
 {
 	ADMUX |= (1 << REFS0) | (0 << ADLAR) | (1 << MUX2); /* reference voltage on AVCC */
   c2:	ec e7       	ldi	r30, 0x7C	; 124
@@ -251,8 +251,8 @@ int main(void) {
 	
 	uint16_t ADCwaarde;
 	uint16_t LDRwaarde;
-	initadc();
- 16a:	0e 94 61 00 	call	0xc2	; 0xc2 <initadc>
+	initAD();
+ 16a:	0e 94 61 00 	call	0xc2	; 0xc2 <initAD>
 	initUsart();
  16e:	0e 94 6f 00 	call	0xde	; 0xde <initUsart>
 	DDRB=0x10;

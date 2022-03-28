@@ -37,9 +37,9 @@ ISR(USART_RX_vect)
 	x = UDR0;
 	
 	if('1' == x)
-		OCR1A = 15625-1;	// total timer ticks for 0.5hz
+		OCR1A = 15625-1;	// total timer ticks for 0.5hz 
 	if ('2' == x)
-		OCR1A = 7812-1;	// total timer ticks for 1hz
+		OCR1A = 7812-1;	// total timer ticks for 1hz /* F_CPU / (((freq * 2)*prescaler)-1) */
 	if ('3' == x)
 		OCR1A = 3906-1;	// total timer ticks for 2hz
 	if ('4' == x)

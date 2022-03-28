@@ -279,8 +279,8 @@ END GROUP
  .text.leesADwaarde
                 0x00000096       0x2c main.o
                 0x00000096                leesADwaarde
- .text.initadc  0x000000c2       0x1c main.o
-                0x000000c2                initadc
+ .text.initAD   0x000000c2       0x1c main.o
+                0x000000c2                initAD
  .text.initUsart
                 0x000000de       0x1c main.o
                 0x000000de                initUsart
@@ -456,11 +456,11 @@ END GROUP
  *(.debug_frame)
  .debug_frame   0x00000000       0xa4 main.o
 
-.debug_str      0x00000000      0x3f9
+.debug_str      0x00000000      0x3f8
  *(.debug_str)
  .debug_str     0x00000000      0x208 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.6.364/gcc/dev/atmega328p/avr5/crtatmega328p.o
- .debug_str     0x00000208      0x1f1 main.o
-                                0x22a (size before relaxing)
+ .debug_str     0x00000208      0x1f0 main.o
+                                0x229 (size before relaxing)
 
 .debug_loc      0x00000000      0x14c
  *(.debug_loc)
