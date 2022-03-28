@@ -25,7 +25,7 @@ void initBlinkTimer()
 {
 
 	DDRB |= 1 << PORTB1;
-	OCR1A = 15625;					 // total timer ticks for 1hz
+	OCR1A = 7812;					 // total timer ticks for 1hz
 	TIMSK1 = 1 << OCIE1A;			 // Enable Timer1 Output Compare A Match Interrupt
 	TCCR1B = 1 << WGM12;			 // set CTC Bit
 	TCCR1B |= 1 << CS10 | 1 << CS12; // 1024 prescaler
@@ -37,13 +37,13 @@ ISR(USART_RX_vect)
 	x = UDR0;
 	
 	if('1' == x)
-		OCR1A = 31250;	// total timer ticks for 0.5hz
+		OCR1A = 15625-1;	// total timer ticks for 0.5hz
 	if ('2' == x)
-		OCR1A = 15625;	// total timer ticks for 1hz
+		OCR1A = 7812-1;	// total timer ticks for 1hz
 	if ('3' == x)
-		OCR1A = 7812;	// total timer ticks for 2hz
+		OCR1A = 3906-1;	// total timer ticks for 2hz
 	if ('4' == x)
-		OCR1A = 156;	// total timer ticks for 100hz
+		OCR1A = 156-1;	// total timer ticks for 100hz
 }
 
 ISR(TIMER1_COMPA_vect)
