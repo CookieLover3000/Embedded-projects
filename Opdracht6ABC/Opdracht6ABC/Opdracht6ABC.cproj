@@ -12,9 +12,9 @@
     <OutputFileName>$(MSBuildProjectName)</OutputFileName>
     <OutputFileExtension>.elf</OutputFileExtension>
     <OutputDirectory>$(MSBuildProjectDirectory)\$(Configuration)</OutputDirectory>
-    <AssemblyName>Opdacht6AB</AssemblyName>
-    <Name>Opdacht6AB</Name>
-    <RootNamespace>Opdacht6AB</RootNamespace>
+    <AssemblyName>Opdracht6ABC</AssemblyName>
+    <Name>Opdracht6ABC</Name>
+    <RootNamespace>Opdracht6ABC</RootNamespace>
     <ToolchainFlavour>Native</ToolchainFlavour>
     <KeepTimersRunning>true</KeepTimersRunning>
     <OverrideVtor>false</OverrideVtor>

@@ -1,5 +1,5 @@
 /*
- * Opdracht6AB.c
+ * Opdracht6a.c
  *
  * Created: 30-3-2022 09:56:29
  * Author : iwanv
