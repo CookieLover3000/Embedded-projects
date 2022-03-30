@@ -12,29 +12,30 @@ void initTimer2FastPWM();
 void initTimer1Fast10PWM();
 void dimLed(uint8_t);
 void pasPeriodeTijdTimer1Aan(uint8_t);
+void initTimer1FastPWM_ICR1();
 
 uint16_t leesADwaarde(uint8_t);
 
 int main(void)
 {
-	uint8_t periodetijden[] = {1,2,3,4,5}; // prescalers
-	initTimer1Fast10PWM();	// initialiseer timer1 op fast PWM
+//	uint8_t periodetijden[] = {1,2,3,4,5}; // prescalers
+	initTimer1FastPWM_ICR1();	// initialiseer timer1 op fast PWM
 	initTimer2FastPWM();	// initialiseer timer2 op fast PWM
-//	initADC();
-	_delay_ms(1000);	// wacht 1 seconde
-	dimLed(255);		// Duty cycle van PWM = 1
-	_delay_ms(1000);	// wacht 1 seconde
+	initADC();
+//	_delay_ms(1000);		// wacht 1 seconde
+//	dimLed(255);			// Duty cycle van PWM = 1
+//	_delay_ms(1000);		// wacht 1 seconde
 	
     while (1) 
     {
-//		long adwaarde=leesADwaarde(5); //long i.v.m omrekenen
-//		adwaarde=adwaarde*255/1023;
-//		dimLed(adwaarde);
-		for(int i=0;i<5;i++)
-		{
-			pasPeriodeTijdTimer1Aan(periodetijden[i]); // functie past de frequentie aan f=1/periodetijd
-			_delay_ms(1000);
-		}
+		long adwaarde=leesADwaarde(5); //long i.v.m omrekenen
+		adwaarde=adwaarde*255/1023;
+		dimLed(adwaarde);
+//		for(int i=0;i<5;i++)
+//		{
+//			pasPeriodeTijdTimer1Aan(periodetijden[i]); // functie past de frequentie aan f=1/periodetijd
+//			_delay_ms(1000);
+//		}
     }
 	return 0;
 }
@@ -52,6 +53,15 @@ void initTimer1Fast10PWM()
 	TCCR1A = (1 << COM1A1) | (1 << WGM10) | (1 << WGM11);
 	TCCR1B = (1 << CS10)| (1 <<CS11) |(1 << WGM12);
 	OCR1A = 512;
+}
+
+void initTimer1FastPWM_ICR1()
+{
+		DDRB = (1 << PORTB1);
+		TCCR1A = (1 << COM1A1) | (1 << WGM10) | (1 << WGM11);
+		TCCR1B = (1 << CS10)| (1 <<CS11) |(1 << WGM12);
+		OCR1A = 512;
+		ICR1 = 1023;
 }
 
 void initADC()
