@@ -12,9 +12,9 @@
     <OutputFileName>$(MSBuildProjectName)</OutputFileName>
     <OutputFileExtension>.elf</OutputFileExtension>
     <OutputDirectory>$(MSBuildProjectDirectory)\$(Configuration)</OutputDirectory>
-    <AssemblyName>Opdracht6ABC</AssemblyName>
-    <Name>Opdracht6ABC</Name>
-    <RootNamespace>Opdracht6ABC</RootNamespace>
+    <AssemblyName>Opdracht6</AssemblyName>
+    <Name>Opdracht6</Name>
+    <RootNamespace>Opdracht6</RootNamespace>
     <ToolchainFlavour>Native</ToolchainFlavour>
     <KeepTimersRunning>true</KeepTimersRunning>
     <OverrideVtor>false</OverrideVtor>
@@ -28,6 +28,18 @@
     <ResetRule>0</ResetRule>
     <eraseonlaunchrule>1</eraseonlaunchrule>
     <EraseKey />
+    <AsfFrameworkConfig>
+      <framework-data xmlns="">
+  <options />
+  <configurations />
+  <files />
+  <documentation help="" />
+  <offline-documentation help="" />
+  <dependencies>
+    <content-extension eid="atmel.asf" uuidref="Atmel.ASF" version="3.49.1" />
+  </dependencies>
+</framework-data>
+    </AsfFrameworkConfig>
     <avrtool>com.atmel.avrdbg.tool.medbg</avrtool>
     <avrtoolserialnumber>ATML2323052700000235</avrtoolserialnumber>
     <avrdeviceexpectedsignature>0x1E950F</avrdeviceexpectedsignature>
