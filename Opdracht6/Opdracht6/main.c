@@ -56,12 +56,14 @@ void initTimer2FastPWM()
 	TCCR2B = (1 << CS20); // prescaler
 }
 
-void initTimer1Fast10PWM() // F_CPU / (freq * TOP) = PRESCALER dus F_CPU / (244 * 1024) = 64
+void initTimer1Fast10PWM() 
 {
 	DDRB = (1 << PORTB1);
 	TCCR1A = (1 << COM1A1) | (1 << WGM10) | (1 << WGM11);
 	TCCR1B = (1 << CS10)| (1 <<CS11) |(1 << WGM12);
-	OCR1A = 512;
+	OCR1A = 512; // 50 % Duty Cycle  
+	// F_CPU / (freq * TOP) = PRESCALER dus F_CPU / (244 * 1024) = 64
+	// Duty Cycle = (OCR) / (TOP) * 100, dus voor 50% OCR = TOP/2
 }
 
 void initTimer1FastPWM_ICR1() // mode 14 for ICR top value... 2 uur hiernaar op zoek geweest fml
@@ -69,8 +71,8 @@ void initTimer1FastPWM_ICR1() // mode 14 for ICR top value... 2 uur hiernaar op 
 		DDRB = (1 << PORTB1);
 		TCCR1A = (1 << COM1A1) | (1 << WGM11);
 		TCCR1B = (1 << CS10) | (1 << CS12) | (1 << WGM12) | (1 << WGM13); // prescaler 1024
-		OCR1A = (ICR1WAARDE/2); // 50 % duty cycle
-		ICR1 = ICR1WAARDE; // max value of ICR1
+		OCR1A = (ICR1WAARDE/2); // 50 % duty cycle 
+		ICR1 = ICR1WAARDE; // max value of ICR1 = 65535
 		TIMSK1 = (1 << ICIE1) | (1 << OCIE1A);
 		sei();
 }
