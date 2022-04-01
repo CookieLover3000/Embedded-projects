@@ -53,7 +53,7 @@ void initTimer2FastPWM()
 {
 	DDRD = (1 << PORTD3);
 	TCCR2A = (1 << COM2B1) |(1 << WGM20) | (1 << WGM21);
-	TCCR2B = (1 << CS20); // prescaler
+	TCCR2B = (1 << CS20) | (1 << CS21) | (1 << CS22); // prescaler
 }
 
 void initTimer1Fast10PWM() 
