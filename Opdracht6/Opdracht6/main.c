@@ -5,7 +5,7 @@
  * Author : iwanv
  */ 
 #define F_CPU 16000000
-#define TOP16bit 65535 
+#define ICR1WAARDE 65535 
 #include <avr/io.h>
 #include <util/delay.h>
 #include <avr/interrupt.h>
@@ -56,7 +56,7 @@ void initTimer2FastPWM()
 	TCCR2B = (1 << CS20); // prescaler
 }
 
-void initTimer1Fast10PWM() // F_CPU / 64 * (1+1024) voor 244hz
+void initTimer1Fast10PWM() // F_CPU / (freq * TOP) = PRESCALER dus F_CPU / (244 * 1024) = 64
 {
 	DDRB = (1 << PORTB1);
 	TCCR1A = (1 << COM1A1) | (1 << WGM10) | (1 << WGM11);
@@ -69,8 +69,8 @@ void initTimer1FastPWM_ICR1() // mode 14 for ICR top value... 2 uur hiernaar op 
 		DDRB = (1 << PORTB1);
 		TCCR1A = (1 << COM1A1) | (1 << WGM11);
 		TCCR1B = (1 << CS10) | (1 << CS12) | (1 << WGM12) | (1 << WGM13); // prescaler 1024
-		OCR1A = (TOP16bit/2); // 50 % duty cycle
-		ICR1 = TOP16bit; // max value of ICR1
+		OCR1A = (ICR1WAARDE/2); // 50 % duty cycle
+		ICR1 = ICR1WAARDE; // max value of ICR1
 		TIMSK1 = (1 << ICIE1) | (1 << OCIE1A);
 		sei();
 }
