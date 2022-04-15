@@ -109,11 +109,11 @@ void pasPeriodeTijdTimer1Aan(uint8_t prescalers)
 
 ISR(TIMER1_COMPA_vect)
 {
-	TCCR2A &= ~(1 << WGM20) & ~(1 << WGM21); // PWM op OC2B uit
+	TCCR2B &= ~((1 << CS20) | (1 << CS21) | (1 << CS22));
 	PORTD &= ~(1 << PORTD3); // zet PORTD3 laag
 }
 
 ISR(TIMER1_CAPT_vect)
 {
-	TCCR2A |= (1 << WGM20) | (1 << WGM21);
+	TCCR2B |= (1 << CS20) | (1 << CS21) | (1 << CS22);
 }

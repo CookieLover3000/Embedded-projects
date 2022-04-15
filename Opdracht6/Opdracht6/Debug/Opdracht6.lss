@@ -82,7 +82,7 @@ void pasPeriodeTijdTimer1Aan(uint8_t prescalers)
   82:	8a b9       	out	0x0a, r24	; 10
   84:	83 e2       	ldi	r24, 0x23	; 35
   86:	80 93 b0 00 	sts	0x00B0, r24	; 0x8000b0 <__TEXT_REGION_LENGTH__+0x7f80b0>
-  8a:	81 e0       	ldi	r24, 0x01	; 1
+  8a:	87 e0       	ldi	r24, 0x07	; 7
   8c:	80 93 b1 00 	sts	0x00B1, r24	; 0x8000b1 <__TEXT_REGION_LENGTH__+0x7f80b1>
   90:	08 95       	ret
 
@@ -179,11 +179,11 @@ ISR(TIMER1_COMPA_vect)
  14c:	8f 93       	push	r24
  14e:	ef 93       	push	r30
  150:	ff 93       	push	r31
-	TCCR2A &= ~(1 << WGM20) & ~(1 << WGM21); // PWM op OC2B uit
- 152:	e0 eb       	ldi	r30, 0xB0	; 176
+	TCCR2B &= ~((1 << CS20) | (1 << CS21) | (1 << CS22));
+ 152:	e1 eb       	ldi	r30, 0xB1	; 177
  154:	f0 e0       	ldi	r31, 0x00	; 0
  156:	80 81       	ld	r24, Z
- 158:	8c 7f       	andi	r24, 0xFC	; 252
+ 158:	88 7f       	andi	r24, 0xF8	; 248
  15a:	80 83       	st	Z, r24
 	PORTD &= ~(1 << PORTD3); // zet PORTD3 laag
  15c:	8b b1       	in	r24, 0x0b	; 11
@@ -211,11 +211,11 @@ ISR(TIMER1_CAPT_vect)
  17c:	8f 93       	push	r24
  17e:	ef 93       	push	r30
  180:	ff 93       	push	r31
-	TCCR2A |= (1 << WGM20) | (1 << WGM21);
- 182:	e0 eb       	ldi	r30, 0xB0	; 176
+	TCCR2B |= (1 << CS20) | (1 << CS21) | (1 << CS22);
+ 182:	e1 eb       	ldi	r30, 0xB1	; 177
  184:	f0 e0       	ldi	r31, 0x00	; 0
  186:	80 81       	ld	r24, Z
- 188:	83 60       	ori	r24, 0x03	; 3
+ 188:	87 60       	ori	r24, 0x07	; 7
  18a:	80 83       	st	Z, r24
 }
  18c:	ff 91       	pop	r31
