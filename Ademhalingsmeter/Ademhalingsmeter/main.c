@@ -2,7 +2,7 @@
  * Ademhalingsmeter.c
  *
  * Created: 5-5-2022 10:49:36
- * Author : iwanv
+ * Authors : Iwan & David
  */ 
 
 #include <avr/io.h>
@@ -27,12 +27,13 @@ int main(void)
 	
     while (1) 
     {
-		for (int i = 0; i < 10; i++) {
+		for (int i = 0; i < 25; i++) {
 			adcWaarde = leesADCwaarde();
 			adcWaardeTotaal += adcWaarde;
 		}
 		adcWaarde *= 1.5;
 		adcWaarde /= 10;
+		adcWaarde -= 143;
 
 		printUsart(adcWaarde);
     }
