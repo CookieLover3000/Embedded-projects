@@ -23,10 +23,17 @@ int main(void)
 	initADC();
 	initUsart();
 	uint16_t adcWaarde;
+	uint16_t adcWaardeTotaal;
 	
     while (1) 
     {
-		adcWaarde = leesADCwaarde();
+		for (int i = 0; i < 10; i++) {
+			adcWaarde = leesADCwaarde();
+			adcWaardeTotaal += adcWaarde;
+		}
+		adcWaarde *= 1.5;
+		adcWaarde /= 10;
+
 		printUsart(adcWaarde);
     }
 	return 0;
@@ -72,7 +79,7 @@ uint16_t leesADCwaarde()
 	ADCSRA |= (1 << ADSC | 1 << ADIF); /* start ADC conversion */
 	while(~ADCSRA & (1 << ADIF));
 	uint16_t a = ADC;
-//	a %= 10;
+//	a %= 10; // werkt niet maar was wel fijner om te lezen omdat de schaal kleiner was.
 	return a;
 }
 
