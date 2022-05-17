@@ -15,7 +15,7 @@ void initUsart();
 void writeChar(char x);
 void writeString(char st[]);
 void writeInt(int i);
-uint16_t leesADCwaarde(uint16_t a);
+uint16_t leesADCwaarde();
 void printUsart(uint16_t a);
 
 int main(void)
@@ -36,13 +36,13 @@ void initADC()
 {
 	// Welke Voltage reference nodig (table 23-3)
 	ADMUX = (1 << REFS0) | (1 << MUX0) | (1 << MUX2); // Voltage Reference: AVcc witch external capacitator at AREF pin - Analog Channel = ADC5
-	ADCSRA = (1 << ADEN); // Moet de juiste prescaler er nog opzetten, hiervoor waarschijnlijk frequentie nodig
+	ADCSRA = (1 << ADEN) | (1 << ADPS0) | (1 << ADPS2); // Prescaler 32
 }
 
 void initUsart()
 {
 	UCSR0A = 0;
-	UCSR0B = (1 << TXEN0); /* Enable de USART Transmitter */
+	UCSR0B = (1 << TXEN0) | (1 << RXEN0); /* Enable de USART Transmitter */
 	UCSR0C = (1 << UCSZ01) | (1 << UCSZ00); /* 8 data bits, 1 stop bit */
 	UBRR0H=00;
 	UBRR0L=103; /* baudrade 9600 */
@@ -72,6 +72,7 @@ uint16_t leesADCwaarde()
 	ADCSRA |= (1 << ADSC | 1 << ADIF); /* start ADC conversion */
 	while(~ADCSRA & (1 << ADIF));
 	uint16_t a = ADC;
+//	a %= 10;
 	return a;
 }
 
