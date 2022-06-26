@@ -12,16 +12,19 @@
 
 int main()
 {
+	//init
 	PORTD = 0x07;
 	DDRD = 0x07;
 	int a = 0; 
 	uint8_t b = 0;
+	
 	while(1)
 	{
+		// turn the leds on and off
 		PORTD |= (1 << b);
 		_delay_ms(500);
 		PORTD &= ~(1 << b);
-
+		
 		if (a < 5)
 		{
 			a++;
@@ -31,6 +34,7 @@ int main()
 			else
 			b--;
 		}
+		// reset
 		else
 		{
 			a = 0;
