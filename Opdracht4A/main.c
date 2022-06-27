@@ -40,12 +40,6 @@ void writeInt(int i)
 	writeString(buffer);
 }
 
-#define F_CPU 16000000
-#include <avr/io.h>
-#include <util/delay.h>
-
-#define WAARDE1 200
-
 int main(void) {
 	
 	initUsart();
